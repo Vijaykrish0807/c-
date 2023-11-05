@@ -1,6 +1,6 @@
 #include <iostream>
 #include <limits.h>
-#include<graphics.h>
+//#include "graphics.h"
 #include<string.h>
 #define V 38
 #define INFINITY 9999
@@ -97,9 +97,9 @@ string districtPath(int dis)
 		pt = "Chennai";
 	else if(dis==37)
 		pt = "Tiruvallur";
-	
+
 	return pt;
-		
+
 }
 
 int districtNum(string dis)
@@ -209,7 +209,7 @@ void display(Node* head)
 		while (Rp) {
 			Rp = Rp->right;
 		}
-		
+
 	}
 	cout << "\n";
 	while(Dp){
@@ -228,7 +228,7 @@ int famNum(string place)
     }
     else if(place == "Tiruchendur beach")
     {
-         val=3; 
+         val=3;
     }
      else if(place == "Pilavakkal dam")
      {
@@ -236,7 +236,7 @@ int famNum(string place)
      }
     else if( place == "Dr. APJ Memorial")
     {
-       val=6; 
+       val=6;
     }
     else if(place == "Meenakshi Amman Temple")
     {
@@ -365,9 +365,9 @@ string famousPlace(string path)
     {
         place ="";
     }
-	
+
 	return place;
-	
+
 }
 
 
@@ -377,12 +377,12 @@ string famPlace(int val)
     if(val==2)
     {
         place = "Tiruvallur statue";
-        
+
     }
     else if(val==4)
     {
         place = "Tiruchendur beach";
-         
+
     }
      else if(val==6)
      {
@@ -391,67 +391,67 @@ string famPlace(int val)
     else if(val==7 )
     {
         place = "Dr. APJ Memorial";
-       
+
     }
     else if(val==9)
     {
         place = "Meenakshi Amman Temple";
-        
+
     }
     else if( val==11)
     {
         place = "Kodaikanal";
-       
+
     }
     else if(val==17)
     {
         place = "AADI YOGI";
-        
+
     }
     else if( val==18)
     {
         place="Rock Fort";
-       
+
     }
     else if( val==13)
     {
         place="Tanjavur Periya Temple";
-        
+
     }
     else if( val==20)
     {
         place ="Ooty boat house";
-       
+
     }
     else if( val==26)
     {
         place ="Yercaud Lake";
-         
+
     }
     else if( val==27)
     {
         place = "Silver Beach";
-        
+
     }
     else if(val==33)
     {
         place ="Virupaksha cave";
-         
+
     }
     else if( val==31)
     {
         place = "Golden Temple";
-       
+
     }
     else if(val==37 )
     {
         place ="Varadaraja Perumal Temple";
-        
+
     }
     else if(val==38)
     {
         place ="Marina Beach";
-         
+
     }
     else
     {
@@ -487,11 +487,11 @@ void linkedDistrict(string pathDistrict[],int a)
 		    string  num = famousPlace(pathDistrict[j]);
 			district[1][j]=famNum(num);
 		}
-		
+
 		cout<<"\t\tFAMOUS PLACES YOU NEED TO VISIT\n\n";
 		for(int i=0;i<a;i++)
         {
-            
+
             cout<<pathDistrict[i]<<" -> "<<famousPlace(pathDistrict[i]);
             cout<<endl;
         }
@@ -500,11 +500,11 @@ void linkedDistrict(string pathDistrict[],int a)
 		cin>>op;
 		if(op=="yes")
         	mainMenu();
-	
+
 	Node* head = initialize(a,district,0,0,2,a);
 	display(head);
 	cout<<endl;
-    
+
 }
 
 void pathplace(int path[],int a)
@@ -516,7 +516,7 @@ void pathplace(int path[],int a)
 		if(path[i]!=0)
 		{
 			count+=1;
-		}	
+		}
 	}
 	string district[count+1];
 	for(int i=0;i<a;i++)
@@ -524,7 +524,7 @@ void pathplace(int path[],int a)
 		district[i]=districtPath(path[i]);
 	}
 	linkedDistrict(district,a);
-	
+
 }
 
 void bill(int distance,string prefer,string fam,int people)
@@ -534,7 +534,7 @@ void bill(int distance,string prefer,string fam,int people)
 	string op;
 	cout<<endl<<endl;
 	cout<<endl<<endl;
-	
+
 	if(fam=="yes"||fam=="YES")
 	{
 	if(prefer == "A/C" || prefer == "a/c" || prefer =="ac" || prefer =="AC")
@@ -543,7 +543,7 @@ void bill(int distance,string prefer,string fam,int people)
 		cout<<"Dear coustomer you are asked to pay the bill of Rs. "<<tot;
 	cout<<endl<<endl;
 	}
-	
+
 	else
 	{
 		if(prefer == "A/C" || prefer == "a/c" || prefer =="ac" || prefer =="AC")
@@ -560,50 +560,50 @@ void bill(int distance,string prefer,string fam,int people)
 
 
 void dijkstra(int districts[V][V],int n,string fDistrict,string tDistrict,string prefer,string fam,int people) {
-	
+
    int startnode=districtNum(fDistrict);
    int x=districtNum(tDistrict);
 
    int cost[V][V],distance[V],pred[V];
    int visited[V],count,mindistance,nextnode,i,j;
-   
+
    for(i=0;i<n;i++)
       for(j=0;j<n;j++)
    if(districts[i][j]==0)
       cost[i][j]=INFINITY;
    else
       cost[i][j]=districts[i][j];
-      
-      
+
+
    for(i=0;i<n;i++)
     {
       distance[i]=cost[startnode][i];
       pred[i]=startnode;
       visited[i]=0;
    }
-   
+
    distance[startnode]=0;
    visited[startnode]=1;
    count=1;
-   
+
    while(count<n-1) {
       mindistance=INFINITY;
       for(i=0;i<n;i++)
       {
-	  
+
          if(distance[i]<mindistance&&!visited[i])
 		  {
         	 mindistance=distance[i];
          		nextnode=i;
       	}
   	  }
-  	  
+
       visited[nextnode]=1;
-      
+
       for(i=0;i<n;i++)
       {
          if(!visited[i])
-      		if(mindistance+cost[nextnode][i]<distance[i]) 
+      		if(mindistance+cost[nextnode][i]<distance[i])
 			{
          		distance[i]=mindistance+cost[nextnode][i];
          		pred[i]=nextnode;
@@ -631,15 +631,15 @@ void dijkstra(int districts[V][V],int n,string fDistrict,string tDistrict,string
              path[a]=j;
              a++;
          }
-            
+
          dis=districtPath(j);
          cout<<"<-"<<dis;
       }while(j!=startnode);
    }
-    graph();
+    //graph();
    string op;
    cout<<endl<<endl;
-   
+
    cout<<"Wanna check your bill ? ";
    cin>>op;
    system("cls");
@@ -665,7 +665,7 @@ void recheck(string name,string fDistrict,string tDistrict,int people,string dat
 	cout<<endl<<endl;
 	cout<<"\t\tTHE PREFERABLE A/C OR Non A/C IS "<<prefer;
 	cout<<endl<<endl;
-	
+
 	int  st,end;
 	string op;
 	cout<<endl<<endl;
@@ -673,7 +673,7 @@ void recheck(string name,string fDistrict,string tDistrict,int people,string dat
 	cin>>op;
 	system("cls");
 	if(op=="yes")
-	{	
+	{
 		cout<<endl<<endl;
 		cout<<endl<<endl;
 		cout<<"Dear "<<name<<" this is your route and the distance from "<<fDistrict<<" and "<<tDistrict <<endl<<endl;
@@ -693,7 +693,7 @@ void booking(int districts[V][V])
     cout<<"ENTER YOUR NAME : ";
     cin>>name;
     cout<<endl<<endl;
-   	cout<<"ENTER THE FROM DISTRICT :"; 	
+   	cout<<"ENTER THE FROM DISTRICT :";
    	cin>>fDistrict;
    	cout<<endl<<endl;
    	cout<<"ENTER THE TO DISTRICT :";
@@ -713,13 +713,13 @@ void booking(int districts[V][V])
    	cout<<endl<<endl;
    	recheck(name,fDistrict,tDistrict,people,date,prefer,districts,fam);
 }
-
+/*
 void graph()
 {
 	initwindow(900,900);
 	settextstyle(9, 0, 3);
 	//outtextxy(100,100,"YOUR CAR ROUTE !");
-	setcolor(LIGHTBLUE);	
+	setcolor(LIGHTBLUE);
 	line(100,480,130,456);
 	line(130,456,160,450);
 	line(130,456,135,420);
@@ -789,7 +789,7 @@ void graph()
 	line(250,190,245,170);
 	line(210,185,245,170);
 	line(263,175,245,170);
-	
+
 settextstyle(0, 0, 1);
 setcolor(WHITE);
 outtextxy (370,315, "1 Kanya kumari\n");
@@ -870,10 +870,12 @@ setcolor(GREEN);
   outtextxy (260,197,"36");
   outtextxy (263,177,"37");
   outtextxy (245,172,"38");
-	
+
 	getch();
 	closegraph();
 }
+*/
+
 void mainMenu()
 {
     int districts[V][V] = {{0,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},//1
@@ -916,8 +918,8 @@ void mainMenu()
 						   {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,94,55,44,0}//38
                     };
     do{
-	system("cls");	              
-   	int ch; 
+	system("cls");
+   	int ch;
    	title();
     cout<<"PLEASE ENTER..........."<<endl<<endl;
     cout<<"1. BOOKING "<<endl;
@@ -928,20 +930,21 @@ void mainMenu()
     {
     	case 1:
     		title();
-    		cout<<"HELLO !! Customer Please start your booking !!\n\n";  
+    		cout<<"HELLO !! Customer Please start your booking !!\n\n";
     		booking(districts);
     		break;
-    		
+
     	case 2:
     		title();
     		cout<<"THANK YOU !! HAVE A GOOD DAY!!\n";
     		exit(1);
 	}
-    }while(1);     
-	   
+    }while(1);
+
 }
 
 int main()
 {
+   cout<<"hello";
     mainMenu();
 }
